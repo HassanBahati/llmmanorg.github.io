@@ -9,10 +9,11 @@ tags = ["dsh", "serve", "launch"]
 
 An artificial intelligence (AI) agent is a system that autonomously performs tasks by designing workflows with available tools. 
 
-An agent harness is a loop around your model which takes your task, calls a model, runs tools(shell, file edits), provides results and repeats. Claude Code, Codex, Open Code are all harnesses. Deepseek Harness is Deepseek's.
+An agent harness is a loop around your model that takes your task, calls a model, runs tools (such as shell commands and file edits), provides results, and repeats. Claude Code, Codex, and OpenCode are all harnesses. DeepSeek Harness is DeepSeek's.
 
-Unlike Claude Code, Deepseek harness is fully customizable. It builds on the idea that everything is a plugin including the model, tools, memory and even the agent loop itself. With Deepseek harness, you can build a custom AI agent entirely from scratch, run it locally with any AI model and even; call Claude Code and Codex as sub-agents from inside of it. 
+Unlike Claude Code, DeepSeek Harness is fully customizable. It builds on the idea that everything is a plugin including the model, tools, memory and even the agent loop itself. With DeepSeek Harness, you can build a custom AI agent entirely from scratch, run it locally with any AI model and even; call Claude Code and Codex as sub-agents from inside of it. 
 
+<!-- more -->
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Inputs flow into DeepSeek Harness, which fans out to pluggable capabilities; its model slot is filled by llmman serve" style="width:100%;height:auto;max-width:900px;margin:2rem 0;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
 <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="var(--accent,#7aa2f7)"/></marker></defs>
@@ -113,7 +114,7 @@ The second is the patch that points `dsh` at the first. Both are rewritten on ev
 In that configuration:
 
 - **`apiKeyEnv`** names an environment variable rather than holding a key, so the credential travels in dsh's environment and never lands on disk. That is a deliberate security choice: a config file that never holds a credential cannot leak one.
-- **`input`** is populated from the model itself. llmman asks the daemon what the model can do, so dsh offers image attachments exactly when the model behind it can serve them.
+- **`input`** is populated from local model metadata. llmman asks the daemon what a local model can do, so dsh offers image attachments when a locally served model supports them. Hosted-provider launches currently advertise text input only.
 
 ## Hosted models
 
