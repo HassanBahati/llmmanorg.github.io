@@ -83,8 +83,8 @@ llmman launch dsh --model gemma4:e4b \
 `llmman` defaults to a `web` profile. Providing `--profile headless` overrides the default profile and uses the `headless` profile.
 
 <img src="headless-run.png"
-     alt="dsh's headless profile answering a question about git rebase from qwen3.5:0.8b, run through llmman"
-     width="1015" height="209" loading="lazy">
+     alt="dsh's headless profile answering a question about git rebase from gemma4:e4b, run through llmman"
+     width="1230" height="352" loading="lazy">
 
 
 ## What llmman configures for you
@@ -127,7 +127,7 @@ Export the provider's key and add `--provider` to the same command:
 
 ```sh
 export OPENROUTER_API_KEY=...
-llmman launch dsh --provider openrouter --model qwen/qwen3-coder
+llmman launch dsh --provider openrouter --model google/gemma-4-31b-it
 ```
 
 The key is read from your environment and sent with each request. It is never written into dsh's configuration or anywhere else on disk.
@@ -153,11 +153,11 @@ llmman list --provider openrouter
 A server the catalog has never heard of works too: vLLM on a GPU machine down the hall, LM Studio on a laptop, or a proxy in front of OpenAI. Give it a `base_url` in `llmman.conf` and it takes the same flag:
 
 ```sh
-llmman config set providers.gpubox.base_url http://gpubox:8000/v1
-llmman launch dsh --provider gpubox --model qwen3-coder
+llmman config set providers.local.base_url http://192.168.1.50:8000/v1
+llmman launch dsh --provider local --model google/gemma-4-26b-a4b-it
 ```
 
-Servers on your own network often need no key. If yours does, set `providers.gpubox.api_key_env` to the name of the environment variable that holds it. If the server speaks the Anthropic API rather than OpenAI's, set `providers.gpubox.wire` to `anthropic`.
+Servers on your own network often need no key. If yours does, set `providers.local.api_key_env` to the name of the environment variable that holds it. If the server speaks the Anthropic API rather than OpenAI's, set `providers.local.wire` to `anthropic`.
 
 ### Stay local, and use a hosted model only when needed
 
