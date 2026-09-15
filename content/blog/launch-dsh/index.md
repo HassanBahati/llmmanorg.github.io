@@ -62,10 +62,10 @@ Launch DeepSeek Harness with llmman and you get the following out of the box:
 ## The setup
 
 ```sh
-llmman launch dsh --model <model-name>    # eg. gemma4:e4b
+llmman launch dsh --model <model-name>    # eg. gemma4:12b
 ```
 
-One command does four things: it starts `llmman serve` if there isnt a running server, pulls the model and loads it, writes the configuration `dsh` expects, and hands over to dsh's `web` profile. Short names work here the way they do everywhere else in `llmman`, so `gemma4:e4b` resolves to `docker.io/ai/gemma4:e4b`.
+One command does four things: it starts `llmman serve` if there isnt a running server, pulls the model and loads it, writes the configuration `dsh` expects, and hands over to dsh's `web` profile. Short names work here the way they do everywhere else in `llmman`, so `gemma4:12b` resolves to `docker.io/ai/gemma4:12b`.
 
 You do not need `dsh` installed for this. When it isn't on your `PATH`, llmman sets it up with `npx` instead, and says so before it starts downloading anything.
 
@@ -77,15 +77,15 @@ When you run `llmman launch dsh --model <model-name>`, dsh's `web` profile boots
 browser, pass dsh's headless profile instead. Everything after `--` goes to dsh's own CLI:
 
 ```sh
-llmman launch dsh --model gemma4:e4b \
+llmman launch dsh --model gemma4:12b \
 -- --profile headless "Explain what git rebase does in one sentence"
 ```
 
 `llmman` defaults to a `web` profile. Providing `--profile headless` overrides the default profile and uses the `headless` profile.
 
 <img src="headless-run.png"
-     alt="dsh's headless profile answering a question about git rebase from gemma4:e4b, run through llmman"
-     width="1230" height="352" loading="lazy">
+     alt="dsh's headless profile answering a question about git rebase from gemma4:12b, run through llmman"
+     width="1398" height="370" loading="lazy">
 
 
 ## What llmman configures for you
@@ -95,7 +95,7 @@ When you launch `dsh` with `llmman`, `llmman` sets up two files under `~/.config
 ```yaml
 agent-default-model:
   provider: llmman
-  model: "docker.io/ai/gemma4:e4b"
+  model: "docker.io/ai/gemma4:12b"
 llm-pi-ai:
   providers:
     llmman:
@@ -104,8 +104,8 @@ llm-pi-ai:
       api: openai-completions
       baseURL: "http://127.0.0.1:17434/v1"
       models:
-        - id: "docker.io/ai/gemma4:e4b"
-          name: "docker.io/ai/gemma4:e4b"
+        - id: "docker.io/ai/gemma4:12b"
+          name: "docker.io/ai/gemma4:12b"
           input: [text, image]
 ```
 
@@ -165,7 +165,7 @@ Servers on your own network often need no key. If yours does, set `providers.loc
 You don't have to choose one or the other for a whole session. With `--overflow-provider` and `--overflow-model`, dsh gets a local model and a hosted one behind it:
 
 ```sh
-llmman launch dsh --model gemma4:e4b \
+llmman launch dsh --model gemma4:12b \
   --overflow-provider anthropic --overflow-model claude-sonnet-5
 ```
 
