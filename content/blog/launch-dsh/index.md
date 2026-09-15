@@ -61,10 +61,10 @@ Launch DeepSeek Harness with llmman and you get the following out of the box:
 ## The setup
 
 ```sh
-llmman launch dsh --model <model-name>    # eg. qwen3.5:0.8b
+llmman launch dsh --model <model-name>    # eg. gemma4:e4b
 ```
 
-One command does four things: it starts `llmman serve` if there isnt a running server, pulls the model and loads it, writes the configuration `dsh` expects, and hands over to dsh's `web` profile. Short names work here the way they do everywhere else in `llmman`, so `qwen3.5:0.8b` resolves to `docker.io/ai/qwen3.5:0.8b`.
+One command does four things: it starts `llmman serve` if there isnt a running server, pulls the model and loads it, writes the configuration `dsh` expects, and hands over to dsh's `web` profile. Short names work here the way they do everywhere else in `llmman`, so `gemma4:e4b` resolves to `docker.io/ai/gemma4:e4b`.
 
 You do not need `dsh` installed for this. When it isn't on your `PATH`, llmman sets it up with `npx` instead, and says so before it starts downloading anything.
 
@@ -76,7 +76,7 @@ When you run `llmman launch dsh --model <model-name>`, dsh's `web` profile boots
 browser, pass dsh's headless profile instead. Everything after `--` goes to dsh's own CLI:
 
 ```sh
-llmman launch dsh --model qwen3.5:0.8b \
+llmman launch dsh --model gemma4:e4b \
 -- --profile headless "Explain what git rebase does in one sentence"
 ```
 
@@ -94,7 +94,7 @@ When you launch `dsh` with `llmman`, `llmman` sets up two files under `~/.config
 ```yaml
 agent-default-model:
   provider: llmman
-  model: "docker.io/ai/qwen3.5:0.8b"
+  model: "docker.io/ai/gemma4:e4b"
 llm-pi-ai:
   providers:
     llmman:
@@ -103,8 +103,8 @@ llm-pi-ai:
       api: openai-completions
       baseURL: "http://127.0.0.1:17434/v1"
       models:
-        - id: "docker.io/ai/qwen3.5:0.8b"
-          name: "docker.io/ai/qwen3.5:0.8b"
+        - id: "docker.io/ai/gemma4:e4b"
+          name: "docker.io/ai/gemma4:e4b"
           input: [text, image]
 ```
 
@@ -164,7 +164,7 @@ Servers on your own network often need no key. If yours does, set `providers.gpu
 You don't have to choose one or the other for a whole session. With `--overflow-provider` and `--overflow-model`, dsh gets a local model and a hosted one behind it:
 
 ```sh
-llmman launch dsh --model qwen3.5:0.8b \
+llmman launch dsh --model gemma4:e4b \
   --overflow-provider anthropic --overflow-model claude-sonnet-5
 ```
 
